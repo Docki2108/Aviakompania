@@ -1,0 +1,50 @@
+﻿<Window x:Class="aviakompania.AdminMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:aviakompania"
+        mc:Ignorable="d"
+        Title="AMONIC Airlines Automation System" Height="450" Width="800">
+    <Grid>
+        <ToolBar Background="White"  Height="30" VerticalAlignment="Top"  Grid.Row="0" Margin="0,0,-0.4,0" >
+            <Button Content="Add user" Name="add_user_btn" Click="add_user_btn_click"></Button>
+            <Button Content="Exit" Name="exit_btn" Click="exit_btn_click" ></Button>
+        </ToolBar>
+
+        <ListView x:Name="user_view" HorizontalAlignment="Stretch" Margin="10,80,9.6,60" VerticalAlignment="Stretch" BorderBrush="Black">
+            <ListView.Resources>
+                <Style TargetType="ListViewItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                            <Setter Property="IsSelected" Value="True"/>
+                        </Trigger>
+                    </Style.Triggers>
+                    <EventSetter Event="PreviewGotKeyboardFocus" Handler="SelectCurrentItem"/>
+                </Style>
+            </ListView.Resources>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="765">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="127"/>
+                            <ColumnDefinition Width="127"/>
+                            <ColumnDefinition Width="127"/>
+                            <ColumnDefinition Width="127"/>
+                            <ColumnDefinition Width="127"/>
+                            <ColumnDefinition Width="127"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding Path=FirstName}" Margin="12,6,0,0" />
+                        <TextBlock Grid.Column="1" Text="{Binding Path=LastName}" Margin="12,6,0,0" />
+                        <TextBlock Grid.Column="2" Text="{Binding Path=Birthdate}" Margin="12,6,0,0" />
+                        <TextBlock Grid.Column="3" Text="{Binding Path=RoleID}" Margin="12,6,0,0" />
+                        <TextBlock Grid.Column="4" Text="{Binding Path=Email}" Margin="12,6,0,0" />
+                        <TextBlock Grid.Column="5" Text="{Binding Path=OfficeID}" Margin="12,6,0,0" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <DataGrid Height="100" Width="100"/>
+        </ListView>
+
+    </Grid>
+</Window>
